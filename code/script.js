@@ -28,27 +28,13 @@
 //  тобто всі інші кола зрушуються вліво.
 
 function foo2() {
-  let g = document.getElementById("canv").getContext("2d");
+  const [...div] = document.querySelector(".circle-box").children;
+  div.forEach((el) => {
+    el.style.background = `hsl(${Math.floor(Math.random() * 360)}, 50%, 50%)`;
+  });
 
-  g.translate(40, 40);
-
-  for (let i = 0; i < 10; i++) {
-    g.save();
-    for (let j = 0; j < 10; j++) {
-      g.fillStyle = `hsl(${Math.floor(Math.random() * 360)}, 50%, 50%)`;
-
-      g.beginPath();
-      g.arc(10, 10, 20, 0, Math.PI * 2, true);
-      g.closePath();
-      g.fill();
-      g.translate(40, 0);
-    }
-    g.restore();
-    g.translate(0, 40);
-  }
-  document.getElementById('canv').onclick = function() {
-    let node = document.querySelector('canvas');
+  document.querySelector(".circle-box").onclick = function () {
+    let node = document.querySelector(".circle");
     node.parentNode.removeChild(node);
-  }
+  };
 }
-

@@ -4,23 +4,27 @@
 //  створений і доданий на сторінку за допомогою Javascript
 //  При натисканні кнопки "Намалювати коло" показувати одне поле введення - діаметр кола.
 
-// function foo1() {
-//     alert(`Рисуем круг диаметром ${document.querySelector("input").value}`);
+function foo1() {
+    alert(`Рисуем круг диаметром ${document.querySelector("input").value}`);
 
-//     let rad = document.querySelector("input").value;
+    let rad = document.querySelector("input").value;
 
-//     let canvas = document.getElementById('circle');
+    let canvas = document.getElementById('circle');
 
-//     let ctx = canvas.getContext('2d');
+    let ctx = canvas.getContext('2d');
 
-//     ctx.fillStyle = 'red';
+    ctx.fillStyle = 'red';
 
-//     ctx.beginPath();
+    ctx.beginPath();
 
-//     ctx.arc(200, 200, rad, 0, Math.PI*2, true);
+    ctx.arc(200, 200, rad, 0, Math.PI*2, true);
+ 
+    ctx.fill()
+}
 
-//     ctx.fill()
-// }
+
+document.write('<hr>');
+
 
 // ---------------------------------------------------------------------------------
 //  При натисканні на кнопку "Намалювати" створити на сторінці 100 кіл (10*10) випадкового кольору.

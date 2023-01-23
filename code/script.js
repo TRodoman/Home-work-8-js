@@ -27,14 +27,20 @@
 //  При натисканні на конкретне коло - це коло повинне зникати, при цьому порожнє місце заповнюватися,
 //  тобто всі інші кола зрушуються вліво.
 
-function foo2() {
-  const [...div] = document.querySelector(".circle-box").children;
-  div.forEach((el) => {
-    el.style.background = `hsl(${Math.floor(Math.random() * 360)}, 50%, 50%)`;
-  });
 
-  document.querySelector(".circle-box").onclick = function () {
-    let node = document.querySelector(".circle");
-    node.parentNode.removeChild(node);
+function foo2() {
+  const circleClasses = document.querySelectorAll(".circle");
+    circleClasses.forEach((el) => {
+      el.style.background = `hsl(${Math.floor(Math.random() * 360)}, 50%, 50%)`;
+    
+  });
+      
+      
+  document.querySelector(".container").onclick = function () {
+
+    let parent = document.querySelector('.circle-box');
+    let elem = document.querySelector(".circle");
+
+    parent.removeChild(elem);
   };
 }

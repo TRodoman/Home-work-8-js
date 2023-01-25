@@ -3,48 +3,51 @@
 //  Дана кнопка повинна бути єдиним контентом у тілі HTML документа, решта контенту повинен бути
 //  створений і доданий на сторінку за допомогою Javascript
 //  При натисканні кнопки "Намалювати коло" показувати одне поле введення - діаметр кола.
-
-function foo1() {
-    alert(`Рисуем круг диаметром ${document.querySelector("input").value}`);
-
-    let rad = document.querySelector("input").value;
-
-    let canvas = document.getElementById('circle');
-
-    let ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = 'red';
-
-    ctx.beginPath();
-
-    ctx.arc(200, 200, rad, 0, Math.PI*2, true);
- 
-    ctx.fill()
-}
-
-
-document.write('<hr>');
-
-
-// ---------------------------------------------------------------------------------
 //  При натисканні на кнопку "Намалювати" створити на сторінці 100 кіл (10*10) випадкового кольору.
 //  При натисканні на конкретне коло - це коло повинне зникати, при цьому порожнє місце заповнюватися,
 //  тобто всі інші кола зрушуються вліво.
 
+document.getElementById('circleStart').onclick = function () {
+  
+  document.body.innerHTML = '';
+  
+  const input = document.createElement('input');
+  document.body.append(input);
+  
+  
+  const button = document.createElement('button');
+  button.innerHTML = 'Намалювати ';
+  document.body.append(button);
+  
 
-function foo2() {
-  const circleClasses = document.querySelectorAll(".circle");
-    circleClasses.forEach((el) => {
-      el.style.background = `hsl(${Math.floor(Math.random() * 360)}, 50%, 50%)`;
+  const container = document.createElement('div');
+  document.body.append(container);
+  
+  
+  button.onclick = function() {
     
-  });
-      
-      
-  document.querySelector(".container").onclick = function () {
+    const diameter = input.value; 
+    const containerWidth = diameter * 10;
+    container.style.width = containerWidth + 'px';
+    
+    for(let i = 0; i < 100; i++) {
+      renderCircle(container, diameter);
+    }
+  }
+  
+};
 
-    let parent = document.querySelector('.circle-box');
-    let elem = document.querySelector(".circle");
+function renderCircle(container, diameter) {
+    const circle = document.createElement('span');
+    circle.style.backgroundColor = `hsl(${Math.floor(Math.random() * 360)}, 80%, 60%)`;
+    circle.style.width = diameter + 'px';
+    circle.style.height = diameter + 'px';
+    circle.style.display = 'inline-block';
+    circle.style.borderRadius = '50%';
+    container.append(circle);
 
-    parent.removeChild(elem);
-  };
+    circle.onclick = function() {
+        circle.remove();
+    }
 }
+
